@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Chat</string>
+    <string name="home">首頁</string>
+    <string name="search">搜尋</string>
+    <string name="personal">個人</string>
+    <string name="nickname">暱稱</string>
+    <string name="account">帳號</string>
+    <string name="password">密碼</string>
+    <string name="remember_me">記住我</string>
+    <string name="log_in">登入</string>
+    <string name="sign_in">註冊</string>
+    <string name="send">送出</string>
+    <string name="nicknames">暱稱：</string>
+    <string name="accounts">帳號：</string>
+    <string name="personal_information">個人資料</string>
+    <string name="set_photo">設置頭像</string>
+    <string name="internal_file">從相簿選取</string>
+    <string name="camera">拍照</string>
+    <string name="alert_title">訊息提醒</string>
+    <string name="login_message">你的帳號或密碼錯誤</string>
+    <string name="login_message2">你的帳號密碼格式錯誤</string>
+</resources>

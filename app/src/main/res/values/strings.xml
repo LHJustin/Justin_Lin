@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Chat</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="personal">Personal</string>
+    <string name="nickname">nickname</string>
+    <string name="account">account</string>
+    <string name="password">password</string>
+    <string name="remember_me">remember me</string>
+    <string name="log_in">Log IN</string>
+    <string name="sign_in">Sign In</string>
+    <string name="send">Send</string>
+    <string name="nicknames">Nickname：</string>
+    <string name="accounts">Account：</string>
+    <string name="personal_information">Personal Information</string>
+    <string name="set_photo">Set Photo</string>
+    <string name="internal_file">Internal file</string>
+    <string name="camera">Camera</string>
+    <string name="alert_title">Message remind</string>
+    <string name="login_message">Your account or password is wrong</string>
+    <string name="login_message2">Your account or password has wrong format</string>
+</resources>
