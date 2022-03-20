@@ -44,7 +44,7 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Most View"
+        android:text="@string/most_view"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         app:layout_constraintBottom_toTopOf="@+id/recycler_search"
         app:layout_constraintStart_toStartOf="parent"

@@ -19,4 +19,7 @@
     <string name="alert_title">Message remind</string>
     <string name="login_message">Your account or password is wrong</string>
     <string name="login_message2">Your account or password has wrong format</string>
+    <string name="most_view">Most View</string>
+    <string name="enter">\" is enter the room.\"</string>
+    <string name="leave">\" is leave the room.\"</string>
 </resources>

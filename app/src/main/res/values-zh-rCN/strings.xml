@@ -20,4 +20,7 @@
     <string name="login_message">你的帐号或密码错误</string>
     <string name="alert_title">讯息提醒</string>
     <string name="login_message2">你的帐号密码格式错误</string>
+    <string name="most_view">热门直播</string>
+    <string name="enter">进入房间</string>
+    <string name="leave">离开房间</string>
 </resources>
