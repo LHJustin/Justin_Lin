@@ -31,6 +31,8 @@ class SearchFragment: Fragment() {
         //
         binding.recyclerSearch.setHasFixedSize(true)
         binding.recyclerSearch.layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.recyclerFindend.setHasFixedSize(true)
+        binding.recyclerFindend.layoutManager = GridLayoutManager(requireContext(), 2)
         var adapter = RoomAdapter()
         binding.recyclerSearch.adapter = adapter
         //ViewModel方法

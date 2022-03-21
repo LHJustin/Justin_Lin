@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Chat</string>
     <string name="home">Home</string>
     <string name="search">Search</string>
     <string name="personal">Personal</string>
@@ -22,4 +21,6 @@
     <string name="most_view">Most View</string>
     <string name="enter">\" is enter the room.\"</string>
     <string name="leave">\" is leave the room.\"</string>
+    <string name="app_name">Justin_Lin</string>
+    <string name="someone">someone</string>
 </resources>

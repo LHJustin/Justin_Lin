@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
@@ -22,6 +24,8 @@ import java.util.concurrent.TimeUnit
 
 class RoomFragment: Fragment() {
     private var TAG = RoomFragment::class.java.simpleName
+    private val viewmodel by viewModels<ChatroomModel>()
+
     lateinit var binding: FragmentRoomBinding
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,11 +40,20 @@ class RoomFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val pref = requireContext().getSharedPreferences("member", Context.MODE_PRIVATE)
         val num = pref.getInt("lognum", 0)
-        val name = pref.getString("name$num", "")
+        var name:String? = ""
+        if(num>-1){
+            name = pref.getString("name$num", "")
+        }else name = getString(R.string.someone)
+
         //聊天室
         binding.recyclerMessage.setHasFixedSize(true)
         binding.recyclerMessage.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL , true)
         binding.recyclerMessage.scrollToPosition(-1)
+        val Adapter = MessageAdapter()
+        binding.recyclerMessage.adapter = Adapter
+        viewmodel.mes.observe(viewLifecycleOwner) {text ->
+            Adapter.submitRoom(text)
+        }
         //websocket
         val client = OkHttpClient.Builder()
             .readTimeout(3, TimeUnit.SECONDS)
@@ -51,31 +64,30 @@ class RoomFragment: Fragment() {
         var websocket = client.newWebSocket(request, object : WebSocketListener(){
             override fun onMessage(webSocket: WebSocket, text: String) {
                 super.onMessage(webSocket, text)
-                var message = ""
                 val json = text
                 if ("default_message" in json){
                     val response = Gson().fromJson(json, Message::class.java)
-                    message = response.body.nickname+":"+response.body.text
+                    viewmodel.getValue(response.body.nickname+":"+response.body.text)
                 }else if ("sys_updateRoomStatus" in json){
                     val response = Gson().fromJson(json, Into::class.java)
                     var action = response.body.entry_notice.action
                     var user = response.body.entry_notice.username
                     when(action){
-                        "enter" -> message = "$user"+getString(R.string.enter)
-                        "leave" -> message = "$user"+getString(R.string.leave)
-                        else -> message = ""
+                        "enter" -> viewmodel.getValue("$user"+getString(R.string.enter))
+                        "leave" -> viewmodel.getValue("$user"+getString(R.string.leave))
+                        else -> viewmodel.getValue("")
                     }
                 }else if ("admin_all_broadcast" in json){
                     val response = Gson().fromJson(json, Notice::class.java)
                     val cn = response.body.content.cn
                     val en = response.body.content.en
                     val tw = response.body.content.tw
-                    message = """en"""+cn+"\n"+"""cn"""+en+"\n"+"""tw"""+tw
+                    viewmodel.getValue("""en"""+en+"\n"+"""cn"""+cn+"\n"+"""tw"""+tw)
                 }else if ("sys_room_endStream" in json){
                     val response = Gson().fromJson(json, End::class.java)
-                    message = response.body.text
+                    viewmodel.getValue(response.body.text)
                 }
-                BindingViewHolder(RowMessageBinding.bind(view)).chatmsg.setText(message)
+
             }
         })
 
@@ -106,4 +118,30 @@ class RoomFragment: Fragment() {
     inner class BindingViewHolder(binding: RowMessageBinding): RecyclerView.ViewHolder(binding.root){
         val chatmsg = binding.tvMessage
     }
+
+    inner class MessageAdapter : RecyclerView.Adapter<RoomFragment.BindingViewHolder>(){
+        var text = mutableListOf<String>()
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingViewHolder {
+            val binding = RowMessageBinding.inflate(layoutInflater, parent, false)
+            return BindingViewHolder(binding)
+        }
+
+        override fun onBindViewHolder(holder: RoomFragment.BindingViewHolder, position: Int) {
+            val mes = text[position]
+            holder.chatmsg.setText(mes)
+        }
+
+        override fun getItemCount(): Int {
+            return text.size
+        }
+
+        fun submitRoom(room: String) {
+            text.add(0,room)
+            notifyDataSetChanged()
+        }
+    }
+
+    data class Messager(val message:String){
+    }
 }
+

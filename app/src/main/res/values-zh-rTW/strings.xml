@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Chat</string>
+    <string name="app_name">Justin_Lin</string>
     <string name="home">首頁</string>
     <string name="search">搜尋</string>
     <string name="personal">個人</string>
@@ -23,4 +23,5 @@
     <string name="most_view">熱門直播</string>
     <string name="enter">進入房間</string>
     <string name="leave">離開房間</string>
+    <string name="someone">某人</string>
 </resources>
