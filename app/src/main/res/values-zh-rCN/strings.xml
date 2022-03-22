@@ -24,4 +24,6 @@
     <string name="enter">进入房间</string>
     <string name="leave">离开房间</string>
     <string name="someone">某人</string>
+    <string name="search_result">搜寻结果</string>
+    <string name="log_out">登出</string>
 </resources>

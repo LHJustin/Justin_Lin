@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.SearchView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -28,7 +31,10 @@ class SearchFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //
+        binding.textView4.visibility = View.GONE
+        binding.recyclerFindend.visibility = View.GONE
+        val searchView = binding.searchview
+        //recyclerview
         binding.recyclerSearch.setHasFixedSize(true)
         binding.recyclerSearch.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.recyclerFindend.setHasFixedSize(true)
@@ -40,6 +46,20 @@ class SearchFragment: Fragment() {
             adapter.submitRoom(rooms)
         }
         viewmodel.getAllRooms()
+        //搜尋功能
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                binding.textView4.visibility = View.VISIBLE
+                binding.recyclerFindend.visibility = View.VISIBLE
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                binding.textView4.visibility = View.GONE
+                binding.recyclerFindend.visibility = View.GONE
+                return false
+            }
+        })
     }
 
     //帶出row_chatroom的binding

@@ -7,8 +7,8 @@
 
     <VideoView
         android:id="@+id/videoView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="454dp"
+        android:layout_height="778dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,12 +17,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_message"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toTopOf="@+id/ed_message"
         app:layout_constraintEnd_toEndOf="@+id/ed_message"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
     <EditText
         android:id="@+id/ed_message"
@@ -67,5 +68,12 @@
         app:layout_constraintTop_toTopOf="@+id/ed_message"
         app:srcCompat="@drawable/send"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,4 +23,6 @@
     <string name="leave">\" is leave the room.\"</string>
     <string name="app_name">Justin_Lin</string>
     <string name="someone">someone</string>
+    <string name="search_result">Search Result</string>
+    <string name="log_out">Log Out</string>
 </resources>
